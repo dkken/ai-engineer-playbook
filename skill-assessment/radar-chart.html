@@ -7,33 +7,57 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="config.js"></script>
     <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --green: #3fb950;
+            --orange: #d2991d;
+            --red: #f85149;
+            --radius: 8px;
+            --shadow: 0 0 0 1px var(--border), 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            max-width: 900px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
+            max-width: 920px;
             margin: 0 auto;
-            padding: 20px;
-            background: #f5f5f5;
+            padding: 24px 20px;
+            background: var(--bg);
+            color: var(--text);
         }
         h1 {
             text-align: center;
-            color: #333;
-        }
-        .container {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
+            color: var(--text);
+            font-size: 1.75rem;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        .container {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
         }
         .chart-container {
             position: relative;
-            height: 400px;
+            height: 420px;
             margin: 20px 0;
         }
         .input-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            gap: 12px;
             margin: 20px 0;
         }
         .input-group {
@@ -41,77 +65,86 @@
             flex-direction: column;
         }
         .input-group label {
-            font-size: 14px;
-            color: #666;
+            font-size: 13px;
+            color: var(--text-secondary);
             margin-bottom: 4px;
+            font-weight: 500;
         }
         .input-group input {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
             font-size: 14px;
+            background: var(--bg);
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(88,166,255,0.15);
         }
         .btn {
-            background: #0066cc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
+            background: #238636;
+            color: #fff;
+            border: 1px solid rgba(240,246,252,0.1);
+            padding: 10px 24px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
+            font-weight: 600;
             display: block;
-            margin: 20px auto;
+            margin: 20px auto 0;
+            transition: background 0.2s;
         }
-        .btn:hover {
-            background: #0052a3;
-        }
+        .btn:hover { background: #2ea043; }
+
         .legend {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 10px;
+            gap: 24px;
+            margin-top: 12px;
             font-size: 14px;
+            color: var(--text-secondary);
         }
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
         }
         .info {
-            background: #e7f3ff;
-            border-left: 4px solid #0066cc;
-            padding: 10px 15px;
-            margin: 10px 0;
+            background: rgba(88,166,255,0.06);
+            border: 1px solid rgba(88,166,255,0.15);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 0 0 16px 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .info strong { color: var(--accent); }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
             font-size: 14px;
         }
 
-        /* 响应式适配 */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            .input-grid {
-                grid-template-columns: 1fr;
-            }
-            .chart-container {
-                height: 300px;
-            }
-            h1 {
-                font-size: 24px;
-            }
+            body { padding: 12px 10px; }
+            .input-grid { grid-template-columns: 1fr; }
+            .chart-container { height: 300px; }
+            h1 { font-size: 22px; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
-            .input-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .chart-container {
-                height: 350px;
-            }
+            .input-grid { grid-template-columns: repeat(2, 1fr); }
+            .chart-container { height: 360px; }
         }
     </style>
 </head>
@@ -120,7 +153,7 @@
 
     <div class="container">
         <div class="info">
-            <strong>使用说明：</strong>根据你在 <a href="self-assessment.md">self-assessment.md</a> 中的实际情况填写得分（0-5分），点击"生成雷达图"直观展示与市场需求差距。
+            <strong>使用说明：</strong>根据你在 <a href="https://github.com/dkken/ai-engineer-playbook/blob/main/skill-assessment/self-assessment.md">self-assessment.md</a> 中的评估结果填写得分（0-5分），点击"生成雷达图"直观展示与市场需求的差距。
             <br><small>市场需求数据基于 2,445 份海外 JD + 国内公开报告综合分析（2026年），采用"市场预期模型"：技能重要性 = 当前需求 × 增长预期 + 薪资溢价 + 层级保底</small>
         </div>
 
@@ -183,42 +216,24 @@
 
         <div class="legend">
             <div class="legend-item">
-                <div class="legend-color" style="background: rgba(0, 102, 204, 0.2); border: 2px solid #0066cc;"></div>
+                <div class="legend-color" style="background: rgba(88,166,255,0.25); border: 2px solid #58a6ff;"></div>
                 <span>市场需求</span>
             </div>
             <div class="legend-item">
-                <div class="legend-color" style="background: rgba(255, 99, 132, 0.2); border: 2px solid #ff6384;"></div>
+                <div class="legend-color" style="background: rgba(248,81,73,0.25); border: 2px solid #f85149;"></div>
                 <span>你的能力</span>
             </div>
         </div>
     </div>
 
+    <p class="back-link">
+        <a href="https://github.com/dkken/ai-engineer-playbook">← 返回 AI Engineer Playbook</a>
+    </p>
+
     <script>
         // 市场需求数据（市场预期模型，0-4分，满分4分）
-        // 设计逻辑：技能重要性 = 当前需求 × 增长预期 + 薪资溢价 + 层级保底
-        // 类比股票估值：PE = 当前业绩 × 未来增长预期。增长率权重更高。
-        // 公式：综合重要性 = min(4, 基础分 × (1 + 增长率系数) + 溢价加分 + 层级保底)
-        //   - 基础分：提及率归一化到 0-4
-        //   - 增长率系数：>100%→0.8, 50-100%→0.5, 20-50%→0.3, <20%→0.1
-        //   - 溢价加分：+$20K以上+0.3, +$30K以上+0.5
-        //   - 层级保底：基础层+0.5, 核心层+0.3, 进阶层+0.2, 专家层+0.1
-        // 数据来源：job-market/02-skill-demand-analysis.md + InterviewStack 3,449份JD + 薪资分析
-        // 12个维度，与 self-assessment.md 对应
         const marketDemand = [3.5, 3.0, 3.5, 3.8, 3.2, 3.5, 3.5, 3.2, 3.5, 2.8, 3.0, 3.0];
 
-        // 各维度评分依据（市场预期模型）：
-        // Python 82.5%×1.1+保底0.5 → 3.5（基础必备，增长稳定）
-        // 软件工程 29.2%×1.3+保底0.5 → 3.0（工程化必备，面试必考）
-        // LLM应用开发 25.4%×1.5+保底0.3 → 3.5（国内爆发+85%，AI-First核心）
-        // RAG 35.9%×1.5+保底0.3 → 3.8（增长139%，最热门+高预期）
-        // Prompt Engineering 29.1%×1.3+保底0.3 → 3.2（核心层基础，稳步增长）
-        // 容器化与部署 62%×1.3+保底0.3 → 3.5（工程化交付，增长38%）
-        // Agent开发 14.4%×1.8+溢价0.3+保底0.2 → 3.5（增长188%，市场极度看好）
-        // 模型评估与优化 11.1%×1.8+溢价0.3+保底0.2 → 3.2（增长178%，AI-First隐性刚需）
-        // MLOps/可观测性 18.5%×1.5+溢价0.5+保底0.2 → 3.5（增长95%+溢价30%，生产必备）
-        // 数据工程 22.7%×1.3+溢价0.3 → 2.8（Spark溢价$24K，稳步增长）
-        // AI安全与对齐 <5%×1.8+溢价0.3+保底0.1 → 3.0（增长125%+溢价25%，合规驱动高预期）
-        // 系统架构 ~18%×1.3+溢价0.5+保底0.1 → 3.0（DistributedSystems溢价$34K，高级岗位核心）
         const labels = [
             'Python 编程',
             '软件工程',
@@ -236,8 +251,6 @@
 
         let chart = null;
 
-        // 提交评估数据（异步，不阻塞用户体验）
-        // 如需启用数据收集，请在 config.js 中配置 GAS_ENDPOINT
         async function submitAssessment(scores) {
             if (!ASSESSMENT_CONFIG.enabled || !ASSESSMENT_CONFIG.GAS_ENDPOINT) {
                 return;
@@ -246,9 +259,7 @@
                 await fetch(ASSESSMENT_CONFIG.GAS_ENDPOINT, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         python: scores[0],
                         software_engineering: scores[1],
@@ -266,7 +277,6 @@
                     })
                 });
             } catch (e) {
-                // 静默失败，不影响用户体验
                 console.log('数据记录失败（非关键）:', e);
             }
         }
@@ -287,13 +297,13 @@
                 parseFloat(document.getElementById('arch').value) || 0
             ];
         }
-        
+
         let lastSubmittedScores = null;
 
-        function updateChart(shouldSubmit = false) {
+        function updateChart(shouldSubmit) {
+            if (shouldSubmit === undefined) shouldSubmit = false;
             const userScores = getUserScores();
 
-            // 仅在用户点击按钮时提交，且避免重复提交相同数据或全0数据
             if (shouldSubmit) {
                 const scoresKey = userScores.join(',');
                 const hasNonZero = userScores.some(s => s > 0);
@@ -306,7 +316,7 @@
             if (chart) {
                 chart.destroy();
             }
-            
+
             const ctx = document.getElementById('radarChart').getContext('2d');
             chart = new Chart(ctx, {
                 type: 'radar',
@@ -316,24 +326,24 @@
                         {
                             label: '市场需求',
                             data: marketDemand,
-                            backgroundColor: 'rgba(0, 102, 204, 0.2)',
-                            borderColor: '#0066cc',
+                            backgroundColor: 'rgba(88,166,255,0.2)',
+                            borderColor: '#58a6ff',
                             borderWidth: 2,
-                            pointBackgroundColor: '#0066cc',
-                            pointBorderColor: '#fff',
-                            pointHoverBackgroundColor: '#fff',
-                            pointHoverBorderColor: '#0066cc'
+                            pointBackgroundColor: '#58a6ff',
+                            pointBorderColor: '#0d1117',
+                            pointHoverBackgroundColor: '#0d1117',
+                            pointHoverBorderColor: '#79c0ff'
                         },
                         {
                             label: '你的能力',
                             data: userScores,
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: '#ff6384',
+                            backgroundColor: 'rgba(248,81,73,0.2)',
+                            borderColor: '#f85149',
                             borderWidth: 2,
-                            pointBackgroundColor: '#ff6384',
-                            pointBorderColor: '#fff',
-                            pointHoverBackgroundColor: '#fff',
-                            pointHoverBorderColor: '#ff6384'
+                            pointBackgroundColor: '#f85149',
+                            pointBorderColor: '#0d1117',
+                            pointHoverBackgroundColor: '#0d1117',
+                            pointHoverBorderColor: '#ff7b72'
                         }
                     ]
                 },
@@ -347,23 +357,33 @@
                             min: 0,
                             ticks: {
                                 stepSize: 1,
+                                color: '#6e7681',
+                                backdropColor: 'transparent',
                                 callback: function(value) {
                                     const labels = ['', '了解', 'Demo', '生产', '专家', '顶尖'];
                                     return labels[value] || '';
                                 }
                             },
                             pointLabels: {
-                                font: {
-                                    size: 12
-                                }
+                                font: { size: 12 },
+                                color: '#8b949e'
+                            },
+                            grid: {
+                                color: 'rgba(48,54,61,0.6)'
+                            },
+                            angleLines: {
+                                color: 'rgba(48,54,61,0.6)'
                             }
                         }
                     },
                     plugins: {
-                        legend: {
-                            display: false
-                        },
+                        legend: { display: false },
                         tooltip: {
+                            backgroundColor: '#161b22',
+                            titleColor: '#e6edf3',
+                            bodyColor: '#8b949e',
+                            borderColor: '#30363d',
+                            borderWidth: 1,
                             callbacks: {
                                 label: function(context) {
                                     const levelLabels = ['完全不会', '了解概念', '做过Demo', '生产级', '能指导他人', '行业顶尖'];
@@ -376,8 +396,8 @@
                 }
             });
         }
-        
-        // 初始化图表（不提交数据）
+
+        // 初始化图表
         updateChart(false);
     </script>
 </body>

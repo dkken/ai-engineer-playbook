@@ -14,17 +14,26 @@
     <meta name="twitter:description" content="从市场洞察到面试通关的完整战术体系。">
     <style>
         :root {
-            --primary: #1a1a2e;
-            --accent: #e94560;
-            --accent2: #0f3460;
-            --bg: #fafafa;
-            --card-bg: #ffffff;
-            --text: #333;
-            --text-light: #666;
-            --border: #e0e0e0;
-            --radius: 12px;
-            --shadow: 0 2px 12px rgba(0,0,0,0.06);
-            --shadow-hover: 0 6px 24px rgba(0,0,0,0.10);
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-alt: #1c2128;
+            --border: #30363d;
+            --border-light: #21262d;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --green: #3fb950;
+            --orange: #d2991d;
+            --red: #f85149;
+            --purple: #a371f7;
+            --hero-from: #0d1117;
+            --hero-via: #0f1322;
+            --hero-to: #1a1040;
+            --radius: 8px;
+            --shadow: 0 0 0 1px var(--border), 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-hover: 0 0 0 1px var(--accent), 0 4px 16px rgba(88,166,255,0.12);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,28 +46,35 @@
             min-height: 100vh;
         }
 
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); text-decoration: underline; }
+
         /* Hero */
         .hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent2) 100%);
-            color: #fff;
+            background: linear-gradient(160deg, var(--hero-from) 0%, var(--hero-via) 50%, var(--hero-to) 100%);
             padding: 80px 20px 60px;
             text-align: center;
+            border-bottom: 1px solid var(--border);
         }
         .hero h1 {
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 800;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         .hero .subtitle {
             font-size: clamp(1rem, 2.5vw, 1.4rem);
-            opacity: 0.85;
+            color: var(--text-secondary);
             font-weight: 400;
             margin-bottom: 8px;
         }
         .hero .tagline {
             font-size: 0.95rem;
-            opacity: 0.6;
+            color: var(--text-tertiary);
             margin-bottom: 32px;
         }
         .hero .badges {
@@ -68,15 +84,14 @@
             flex-wrap: wrap;
         }
         .hero .badge {
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(88,166,255,0.08);
+            border: 1px solid rgba(88,166,255,0.18);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.9);
+            color: var(--accent);
         }
 
-        /* Container */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -85,18 +100,18 @@
 
         /* Section */
         .section {
-            padding: 60px 0;
+            padding: 64px 0;
         }
         .section-title {
             text-align: center;
-            font-size: 1.8rem;
+            font-size: 1.75rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: var(--primary);
+            color: var(--text);
         }
         .section-subtitle {
             text-align: center;
-            color: var(--text-light);
+            color: var(--text-secondary);
             margin-bottom: 40px;
             font-size: 1rem;
         }
@@ -110,7 +125,7 @@
             margin-bottom: 24px;
         }
         .pipeline-stage {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 24px 20px;
@@ -125,63 +140,75 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
         }
-        .pipeline-stage .icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+        .pipeline-stage .icon { font-size: 2rem; margin-bottom: 10px; }
         .pipeline-stage .name {
             font-weight: 700;
             font-size: 1.05rem;
-            color: var(--primary);
+            color: var(--text);
             margin-bottom: 6px;
         }
         .pipeline-stage .desc {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-secondary);
         }
         .pipeline-stage .link {
             display: inline-block;
             margin-top: 10px;
             font-size: 0.8rem;
-            color: var(--accent);
-            text-decoration: none;
             font-weight: 600;
-        }
-        .pipeline-stage .link:hover {
-            text-decoration: underline;
         }
         .pipeline-arrow {
             display: flex;
             align-items: center;
             font-size: 1.5rem;
-            color: var(--text-light);
+            color: var(--text-tertiary);
             flex-shrink: 0;
         }
 
-        /* Resource center */
         .resource-center {
             display: flex;
             justify-content: center;
             margin-top: 8px;
         }
         .resource-center-card {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: var(--surface-alt);
             border: 1px dashed var(--border);
             border-radius: var(--radius);
             padding: 16px 28px;
             text-align: center;
             max-width: 500px;
         }
-        .resource-center-card .icon {
-            font-size: 1.5rem;
+        .resource-center-card .icon { font-size: 1.5rem; }
+        .resource-center-card .name { font-weight: 700; color: var(--text); }
+        .resource-center-card .desc { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 10px;
         }
-        .resource-center-card .name {
-            font-weight: 700;
-            color: var(--primary);
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
         }
-        .resource-center-card .desc {
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-card .label {
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-secondary);
+            margin-top: 4px;
         }
 
         /* Entry cards */
@@ -189,10 +216,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
         .entry-card {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 28px;
@@ -203,32 +230,19 @@
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
         }
-        .entry-card .role-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
-        }
-        .entry-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-        .entry-card p {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 16px;
-        }
+        .entry-card .role-icon { font-size: 2.5rem; margin-bottom: 12px; }
+        .entry-card h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text); }
+        .entry-card p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px; }
         .entry-card ol {
             padding-left: 20px;
             font-size: 0.85rem;
-            color: var(--text-light);
+            color: var(--text-secondary);
             margin-bottom: 16px;
         }
-        .entry-card ol li {
-            margin-bottom: 4px;
-        }
+        .entry-card ol li { margin-bottom: 4px; }
         .entry-card .btn {
             display: inline-block;
-            background: var(--accent);
+            background: #238636;
             color: #fff;
             padding: 8px 20px;
             border-radius: 6px;
@@ -238,40 +252,12 @@
             transition: background 0.2s;
         }
         .entry-card .btn:hover {
-            background: #d1344e;
+            background: #2ea043;
+            text-decoration: none;
         }
 
-        /* Stats */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 24px;
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: 4px;
-        }
-
-        /* Projects table */
-        .table-wrap {
-            overflow-x: auto;
-            margin-bottom: 24px;
-        }
+        /* Table */
+        .table-wrap { overflow-x: auto; margin-bottom: 16px; }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -283,14 +269,12 @@
             border-bottom: 1px solid var(--border);
         }
         th {
-            background: #f8f9fa;
+            background: var(--surface);
             font-weight: 700;
-            color: var(--primary);
+            color: var(--text-secondary);
             white-space: nowrap;
         }
-        tr:hover td {
-            background: #fafafa;
-        }
+        tr:hover td { background: var(--surface-alt); }
         .tier-tag {
             display: inline-block;
             padding: 2px 10px;
@@ -298,31 +282,33 @@
             font-size: 0.75rem;
             font-weight: 700;
         }
-        .tier-1 { background: #d4edda; color: #155724; }
-        .tier-2 { background: #fff3cd; color: #856404; }
-        .tier-3 { background: #f8d7da; color: #721c24; }
+        .tier-1 { background: rgba(63,185,80,0.15); color: var(--green); }
+        .tier-2 { background: rgba(210,153,29,0.15); color: var(--orange); }
+        .tier-3 { background: rgba(248,81,73,0.15); color: var(--red); }
+
+        /* Section alt */
+        .section-alt {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
 
         /* Footer */
         .footer {
-            background: var(--primary);
-            color: rgba(255,255,255,0.7);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
             text-align: center;
             padding: 40px 20px;
             font-size: 0.85rem;
         }
-        .footer a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
         .footer .star-cta {
             font-size: 1.1rem;
-            color: #fff;
+            color: var(--text);
             font-weight: 700;
             margin-bottom: 12px;
         }
+        .footer .links { margin: 8px 0; }
+        .footer .links a { margin: 0 8px; color: var(--accent); }
+        .footer .copy { margin-top: 12px; color: var(--text-tertiary); }
 
         @media (max-width: 768px) {
             .pipeline-arrow { display: none; }
@@ -334,7 +320,6 @@
 </head>
 <body>
 
-<!-- Hero -->
 <header class="hero">
     <h1>AI Engineer Playbook</h1>
     <p class="subtitle">AI 工程师实战策略手册</p>
@@ -357,28 +342,28 @@
                 <div class="icon">📊</div>
                 <div class="name">市场侦察</div>
                 <div class="desc">岗位分布 · 技能排名<br>薪资地域 · 趋势追踪</div>
-                <a class="link" href="./job-market/">进入 →</a>
+                <a class="link" data-href="tree/main/job-market">进入 →</a>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-stage">
                 <div class="icon">🎯</div>
                 <div class="name">能力评估</div>
                 <div class="desc">自测问卷 · 雷达图<br>差距分析 · 学习路径</div>
-                <a class="link" href="./skill-assessment/self-assessment.md">进入 →</a>
+                <a class="link" data-href="blob/main/skill-assessment/self-assessment.md">进入 →</a>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-stage">
                 <div class="icon">🔧</div>
                 <div class="name">项目构建</div>
                 <div class="desc">11 个项目 · 3 个层级<br>面试导向 · 工程化改造</div>
-                <a class="link" href="./practical-projects/">进入 →</a>
+                <a class="link" data-href="tree/main/practical-projects">进入 →</a>
             </div>
             <div class="pipeline-arrow">→</div>
             <div class="pipeline-stage">
                 <div class="icon">🎤</div>
                 <div class="name">面试执行</div>
                 <div class="desc">流程拆解 · 深挖策略<br>系统设计 · 行为面试</div>
-                <a class="link" href="./interview-patterns/">进入 →</a>
+                <a class="link" data-href="tree/main/interview-patterns">进入 →</a>
             </div>
         </div>
         <div class="resource-center">
@@ -386,14 +371,14 @@
                 <div class="icon">📚</div>
                 <div class="name">资源弹药库</div>
                 <div class="desc">工具对比 · 大厂案例 · 真实面经 · 精选索引</div>
-                <a class="link" href="./resources/" style="display:inline-block;margin-top:8px;">进入 →</a>
+                <a class="link" data-href="tree/main/resources" style="display:inline-block;margin-top:8px;">进入 →</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Stats -->
-<section class="section" style="background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+<section class="section section-alt">
     <div class="container">
         <h2 class="section-title">核心数据</h2>
         <p class="section-subtitle">基于 2,445 份海外 JD + 国内公开报告分析</p>
@@ -429,41 +414,41 @@
                 <h3>AI 求职者</h3>
                 <p>准备 AI 工程师面试？从了解市场到拿到 Offer，每一步都有策略。</p>
                 <ol>
-                    <li>了解市场 → <a href="./job-market/01-market-overview.md">市场概览</a></li>
-                    <li>评估自己 → <a href="./skill-assessment/self-assessment.md">能力自测</a></li>
-                    <li>选择项目 → <a href="./practical-projects/">实战项目库</a></li>
-                    <li>准备面试 → <a href="./interview-patterns/01-interview-process.md">面试流程</a></li>
+                    <li>了解市场 → <a data-href="blob/main/job-market/01-market-overview.md">市场概览</a></li>
+                    <li>评估自己 → <a data-href="blob/main/skill-assessment/self-assessment.md">能力自测</a></li>
+                    <li>选择项目 → <a data-href="tree/main/practical-projects">实战项目库</a></li>
+                    <li>准备面试 → <a data-href="blob/main/interview-patterns/01-interview-process.md">面试流程</a></li>
                 </ol>
-                <a class="btn" href="./job-market/01-market-overview.md">开始准备</a>
+                <a class="btn" data-href="blob/main/job-market/01-market-overview.md">开始准备</a>
             </div>
             <div class="entry-card">
                 <div class="role-icon">👨‍💻</div>
                 <h3>技术面试官</h3>
                 <p>需要面试 AI 工程师？这里有角色定义、考察框架和系统设计题目。</p>
                 <ol>
-                    <li>理解角色 → <a href="./role-analysis/01-ai-engineer-role-cn.md">角色定位</a></li>
-                    <li>设计题目 → <a href="./interview-patterns/03-ai-system-design.md">系统设计</a></li>
-                    <li>对标市场 → <a href="./job-market/04-salary-insights.md">薪资数据</a></li>
+                    <li>理解角色 → <a data-href="blob/main/role-analysis/01-ai-engineer-role-cn.md">角色定位</a></li>
+                    <li>设计题目 → <a data-href="blob/main/interview-patterns/03-ai-system-design.md">系统设计</a></li>
+                    <li>对标市场 → <a data-href="blob/main/job-market/04-salary-insights.md">薪资数据</a></li>
                 </ol>
-                <a class="btn" href="./role-analysis/01-ai-engineer-role-cn.md">开始设计</a>
+                <a class="btn" data-href="blob/main/role-analysis/01-ai-engineer-role-cn.md">开始设计</a>
             </div>
             <div class="entry-card">
                 <div class="role-icon">👥</div>
                 <h3>HR / 招聘</h3>
                 <p>招聘 AI 工程师？快速理解岗位、技能需求和市场薪酬。</p>
                 <ol>
-                    <li>岗位认知 → <a href="./role-analysis/">角色分析系列</a></li>
-                    <li>JD 编写 → <a href="./job-market/02-skill-demand-analysis.md">技能需求</a></li>
-                    <li>薪酬对标 → <a href="./job-market/04-salary-insights.md">薪资洞察</a></li>
+                    <li>岗位认知 → <a data-href="tree/main/role-analysis">角色分析系列</a></li>
+                    <li>JD 编写 → <a data-href="blob/main/job-market/02-skill-demand-analysis.md">技能需求</a></li>
+                    <li>薪酬对标 → <a data-href="blob/main/job-market/04-salary-insights.md">薪资洞察</a></li>
                 </ol>
-                <a class="btn" href="./role-analysis/">开始了解</a>
+                <a class="btn" data-href="tree/main/role-analysis">开始了解</a>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Projects -->
-<section class="section" style="background:#fff;border-top:1px solid var(--border);">
+<section class="section section-alt">
     <div class="container">
         <h2 class="section-title">实战项目</h2>
         <p class="section-subtitle">11 个面试导向项目，每个都标注了市场依据和考察维度</p>
@@ -481,77 +466,77 @@
                 <tbody>
                     <tr>
                         <td><span class="tier-tag tier-1">基础</span></td>
-                        <td><a href="./practical-projects/tier-1-foundation/01-rag-knowledge-base.md">RAG 知识库</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-1-foundation/01-rag-knowledge-base.md">RAG 知识库</a></td>
                         <td>RAG, 向量数据库</td>
                         <td>RAG 35.9%</td>
                         <td>2-4h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-1">基础</span></td>
-                        <td><a href="./practical-projects/tier-1-foundation/02-ai-agent-task-runner.md">Agent 任务调度器</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-1-foundation/02-ai-agent-task-runner.md">Agent 任务调度器</a></td>
                         <td>Agent, Function Calling</td>
                         <td>Agents +188%</td>
                         <td>2-4h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-1">基础</span></td>
-                        <td><a href="./practical-projects/tier-1-foundation/03-llm-evaluation-suite.md">LLM 评估套件</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-1-foundation/03-llm-evaluation-suite.md">LLM 评估套件</a></td>
                         <td>Evaluation, 指标设计</td>
                         <td>Evaluation 差异化</td>
                         <td>2-4h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-1">基础</span></td>
-                        <td><a href="./practical-projects/tier-1-foundation/04-prompt-version-manager.md">Prompt 版本管理</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-1-foundation/04-prompt-version-manager.md">Prompt 版本管理</a></td>
                         <td>Prompt Engineering</td>
                         <td>Prompt 29.1%</td>
                         <td>2-4h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-2">进阶</span></td>
-                        <td><a href="./practical-projects/tier-2-intermediate/01-multi-agent-system.md">多 Agent 协作系统</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-2-intermediate/01-multi-agent-system.md">多 Agent 协作系统</a></td>
                         <td>多 Agent, 通信协议</td>
                         <td>高级场景</td>
                         <td>4-8h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-2">进阶</span></td>
-                        <td><a href="./practical-projects/tier-2-intermediate/02-advanced-hybrid-search.md">高级混合检索</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-2-intermediate/02-advanced-hybrid-search.md">高级混合检索</a></td>
                         <td>混合检索, 重排序</td>
                         <td>向量DB 10.8%</td>
                         <td>4-8h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-2">进阶</span></td>
-                        <td><a href="./practical-projects/tier-2-intermediate/03-ai-code-review-bot.md">AI 代码审查机器人</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-2-intermediate/03-ai-code-review-bot.md">AI 代码审查机器人</a></td>
                         <td>CI/CD, MLOps</td>
                         <td>CI/CD 29.2%</td>
                         <td>4-8h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-2">进阶</span></td>
-                        <td><a href="./practical-projects/tier-2-intermediate/04-rag-security-assessment.md">RAG 安全评估</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-2-intermediate/04-rag-security-assessment.md">RAG 安全评估</a></td>
                         <td>AI 安全, Red Teaming</td>
                         <td>合规 +125%</td>
                         <td>4-8h</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-3">高级</span></td>
-                        <td><a href="./practical-projects/tier-3-advanced/01-knowledge-graph-rag.md">知识图谱 RAG</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-3-advanced/01-knowledge-graph-rag.md">知识图谱 RAG</a></td>
                         <td>图数据库, 高级RAG</td>
                         <td>高级RAG场景</td>
                         <td>1-2天</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-3">高级</span></td>
-                        <td><a href="./practical-projects/tier-3-advanced/02-ai-data-pipeline.md">AI 数据管道</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-3-advanced/02-ai-data-pipeline.md">AI 数据管道</a></td>
                         <td>实时ETL, 流处理</td>
                         <td>AI-Support 28.5%</td>
                         <td>1-2天</td>
                     </tr>
                     <tr>
                         <td><span class="tier-tag tier-3">高级</span></td>
-                        <td><a href="./practical-projects/tier-3-advanced/03-production-agent-platform.md">生产级 Agent 平台</a></td>
+                        <td><a data-href="blob/main/practical-projects/tier-3-advanced/03-production-agent-platform.md">生产级 Agent 平台</a></td>
                         <td>平台架构, 可观测性</td>
                         <td>平台/基础设施</td>
                         <td>1-2天</td>
@@ -560,7 +545,7 @@
             </table>
         </div>
         <p style="text-align:center;margin-top:8px;">
-            <a href="./practical-projects/" style="color:var(--accent);text-decoration:none;font-weight:600;">查看所有项目详情 →</a>
+            <a data-href="tree/main/practical-projects" style="font-weight:600;">查看所有项目详情 →</a>
         </p>
     </div>
 </section>
@@ -574,14 +559,14 @@
             <div class="entry-card">
                 <div class="role-icon">📋</div>
                 <h3>12 维度技能自测</h3>
-                <p>基于 JD 数据设计的自测问卷，12 个维度 × 200 分满分，准确评估你的市场匹配度。</p>
-                <a class="btn" href="./skill-assessment/self-assessment.md">开始自测</a>
+                <p>基于 JD 数据设计的自测问卷，12 个维度，准确评估你的市场匹配度。</p>
+                <a class="btn" data-href="blob/main/skill-assessment/self-assessment.md">开始自测</a>
             </div>
             <div class="entry-card">
                 <div class="role-icon">🎯</div>
                 <h3>能力差距分析</h3>
                 <p>市场预期模型量化你的技能差距，告诉你最该优先学习什么。</p>
-                <a class="btn" href="./skill-assessment/gap-analysis.md">查看差距</a>
+                <a class="btn" data-href="blob/main/skill-assessment/gap-analysis.md">查看差距</a>
             </div>
             <div class="entry-card">
                 <div class="role-icon">📡</div>
@@ -596,14 +581,44 @@
 <!-- Footer -->
 <footer class="footer">
     <p class="star-cta">⭐ 如果这本 Playbook 帮到了你，请给一个 Star</p>
-    <p>
-        <a href="https://github.com/dkken/ai-engineer-playbook">GitHub</a> ·
-        <a href="./CONTRIBUTING.md">贡献指南</a> ·
-        <a href="./LICENSE">许可证</a>
-    </p>
-    <p style="margin-top:12px;">基于 <a href="https://github.com/alexeygrigorev/ai-engineering-field-guide">ai-engineering-field-guide</a> 中文本地化与扩展</p>
-    <p style="margin-top:8px;opacity:0.5;">AI Engineer Playbook © 2026</p>
+    <div class="links">
+        <a data-href="">GitHub</a>
+        <a data-href="blob/main/CONTRIBUTING.md">贡献指南</a>
+        <a data-href="blob/main/LICENSE">许可证</a>
+    </div>
+    <p class="copy">AI Engineer Playbook &copy; 2026</p>
 </footer>
+
+<script>
+// 根据当前环境自动切换仓库链接前缀
+(function() {
+    var host = window.location.hostname;
+    var base = '';
+
+    // GitHub Pages → 跳转到 GitHub 仓库（.md 可渲染）
+    if (host === 'dkken.github.io') {
+        base = 'https://github.com/dkken/ai-engineer-playbook/';
+    }
+    // Gitee Pages → 跳转到 Gitee 仓库
+    else if (host === 'dkken.gitee.io') {
+        base = 'https://gitee.com/dkken/ai-engineer-playbook/';
+    }
+    // 本地 file:// 访问 → 去掉 blob/main/ 和 tree/main/ 前缀，直接用相对路径
+    else {
+        base = '';
+    }
+
+    var links = document.querySelectorAll('[data-href]');
+    for (var i = 0; i < links.length; i++) {
+        var path = links[i].getAttribute('data-href');
+        // 本地访问时去掉 GitHub 的 blob/main/ 和 tree/main/ 前缀
+        if (!host) {
+            path = path.replace(/^(blob|tree)\/main\//, '');
+        }
+        links[i].href = base + path;
+    }
+})();
+</script>
 
 </body>
 </html>
