@@ -595,7 +595,7 @@
     var host = window.location.hostname;
     var base = '';
 
-    // GitHub Pages → 跳转到 GitHub 仓库（.md 可渲染）
+    // GitHub Pages → 跳转到 GitHub 仓库
     if (host === 'dkken.github.io') {
         base = 'https://github.com/dkken/ai-engineer-playbook/';
     }
@@ -604,8 +604,12 @@
         base = 'https://gitee.com/dkken/ai-engineer-playbook/';
     }
     // 本地 file:// 访问 → 去掉 blob/main/ 和 tree/main/ 前缀，直接用相对路径
-    else {
+    else if (!host) {
         base = '';
+    }
+    // 其他域名（如 js.org 自定义域名等）→ 默认跳转到 Gitee
+    else {
+        base = 'https://gitee.com/dkken/ai-engineer-playbook/';
     }
 
     var links = document.querySelectorAll('[data-href]');
