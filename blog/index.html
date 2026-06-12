@@ -144,19 +144,24 @@
             margin-bottom: 60px;
         }
         .blog-card {
+            display: flex;
+            flex-direction: column;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
             padding: 24px;
             box-shadow: var(--shadow);
             transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
         }
         .blog-card:hover {
             transform: translateY(-3px);
             box-shadow: var(--shadow-hover);
+            text-decoration: none;
         }
+        .blog-card:hover h3 { color: var(--accent); }
         .blog-card .card-category {
             display: inline-block;
             font-size: 0.75rem;
@@ -288,16 +293,16 @@
 <div class="container">
     <div class="blog-grid" id="blogGrid">
 
-        <!-- Article 1: AI Coding Era Talent -->
-        <article class="blog-card" data-categories="洞察,职业">
+        /* Article 1: AI Coding Era Talent */
+        <a href="articles/ai-coding-era-talent.html" class="blog-card" data-categories="洞察,职业">
             <span class="card-category cat-insight">行业洞察</span>
-            <h3><a href="articles/ai-coding-era-talent.html">AI Coding时代更需要什么样的人才？</a></h3>
+            <h3>AI Coding时代更需要什么样的人才？</h3>
             <p class="card-excerpt">当AI能写出95%语法正确的代码时，会写代码已经不是稀缺能力。知道该写什么、该信任什么、该放弃什么，才是。判断力、架构力、定义力——三种正在急剧升值的能力。</p>
             <div class="card-footer">
                 <span>2026-06-12 · 7,500 字</span>
-                <a href="articles/ai-coding-era-talent.html" class="read-more">阅读 →</a>
+                <span class="read-more">阅读 →</span>
             </div>
-        </article>
+        </a>
 
     </div>
 
