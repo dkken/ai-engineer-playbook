@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客 — AI Engineer Playbook</title>
+    <meta name="description" content="AI Engineer Playbook 博客 — 关于AI工程、技术人才、软件工程趋势的深度思考与行业分析。">
+    <meta name="keywords" content="AI工程师,AI Coding,技术博客,行业洞察,软件工程,技术人才">
+    <meta property="og:title" content="AI Engineer Playbook 博客">
+    <meta property="og:description" content="关于AI工程、技术人才、软件工程趋势的深度思考与行业分析。">
+    <meta property="og:type" content="website">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-alt: #1c2128;
+            --border: #30363d;
+            --border-light: #21262d;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --accent: #58a6ff;
+            --accent-hover: #79c0ff;
+            --green: #3fb950;
+            --orange: #d2991d;
+            --red: #f85149;
+            --purple: #a371f7;
+            --radius: 8px;
+            --shadow: 0 0 0 1px var(--border), 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-hover: 0 0 0 1px var(--accent), 0 4px 16px rgba(88,166,255,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        /* Navigation Bar */
+        .nav-bar {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo:hover { text-decoration: none; color: var(--accent-hover); }
+        .nav-logo .logo-gradient {
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+        .nav-links a:hover { color: var(--text); text-decoration: none; }
+        .nav-links a.active { color: var(--accent); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Page Header */
+        .page-header {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .page-header .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* Category Filter */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        .filter-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        .filter-btn.active {
+            background: rgba(88,166,255,0.12);
+            border-color: var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Blog Cards Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+        .blog-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        .blog-card .card-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            align-self: flex-start;
+        }
+        .cat-insight {
+            background: rgba(88,166,255,0.1);
+            color: var(--accent);
+        }
+        .cat-tech {
+            background: rgba(163,113,247,0.1);
+            color: var(--purple);
+        }
+        .cat-career {
+            background: rgba(63,185,80,0.1);
+            color: var(--green);
+        }
+        .cat-data {
+            background: rgba(210,153,29,0.1);
+            color: var(--orange);
+        }
+        .blog-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+        .blog-card h3 a {
+            color: var(--text);
+        }
+        .blog-card h3 a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .blog-card .card-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .blog-card .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+            border-top: 1px solid var(--border-light);
+            padding-top: 14px;
+            margin-top: auto;
+        }
+        .blog-card .read-more {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+        }
+        .empty-state .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+        .empty-state p { font-size: 1rem; }
+
+        /* Footer */
+        .footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.85rem;
+        }
+        .footer .links { margin: 8px 0; }
+        .footer .links a { margin: 0 8px; color: var(--accent); }
+        .footer .copy { margin-top: 12px; color: var(--text-tertiary); }
+
+        @media (max-width: 768px) {
+            .page-header { padding: 36px 0 28px; }
+            .blog-grid { grid-template-columns: 1fr; }
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav-bar">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">
+            <span class="logo-gradient">AI Engineer Playbook</span>
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">首页</a>
+            <a href="index.html" class="active">博客</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+    <h1>博客</h1>
+    <p class="subtitle">关于AI工程、技术人才、软件工程趋势的深度思考与行业分析</p>
+</div>
+
+<!-- Filter Bar -->
+<div class="container">
+    <div class="filter-bar">
+        <button class="filter-btn active" data-category="all">全部</button>
+        <button class="filter-btn" data-category="洞察">行业洞察</button>
+        <button class="filter-btn" data-category="技术">技术实践</button>
+        <button class="filter-btn" data-category="职业">职业发展</button>
+        <button class="filter-btn" data-category="数据">数据报告</button>
+    </div>
+</div>
+
+<!-- Blog Cards -->
+<div class="container">
+    <div class="blog-grid" id="blogGrid">
+
+        <!-- Article 1: AI Coding Era Talent -->
+        <article class="blog-card" data-categories="洞察,职业">
+            <span class="card-category cat-insight">行业洞察</span>
+            <h3><a href="articles/ai-coding-era-talent.html">AI Coding时代更需要什么样的人才？</a></h3>
+            <p class="card-excerpt">当AI能写出95%语法正确的代码时，会写代码已经不是稀缺能力。知道该写什么、该信任什么、该放弃什么，才是。判断力、架构力、定义力——三种正在急剧升值的能力。</p>
+            <div class="card-footer">
+                <span>2026-06-12 · 7,500 字</span>
+                <a href="articles/ai-coding-era-talent.html" class="read-more">阅读 →</a>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- Empty state (hidden by default) -->
+    <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="empty-icon">📭</div>
+        <p>该分类下暂无文章，请查看其他分类或稍后再来。</p>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="links">
+        <a href="../index.html">首页</a>
+        <a href="index.html">博客</a>
+    </div>
+    <p class="copy">AI Engineer Playbook &copy; 2026</p>
+</footer>
+
+<script>
+// Category filter logic
+(function() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.blog-card');
+    var emptyState = document.getElementById('emptyState');
+    var blogGrid = document.getElementById('blogGrid');
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Update active button
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var category = btn.getAttribute('data-category');
+            var visibleCount = 0;
+
+            cards.forEach(function(card) {
+                var cardCategories = card.getAttribute('data-categories').split(',');
+                if (category === 'all' || cardCategories.indexOf(category) !== -1) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Toggle empty state
+            if (visibleCount === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>

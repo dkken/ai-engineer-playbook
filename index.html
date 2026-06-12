@@ -310,11 +310,63 @@
         .footer .links a { margin: 0 8px; color: var(--accent); }
         .footer .copy { margin-top: 12px; color: var(--text-tertiary); }
 
+        /* Blog Highlight Card */
+        .blog-highlight {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .blog-highlight-card {
+            display: block;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .blog-highlight-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            text-decoration: none;
+        }
+        .blog-hl-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        .cat-insight { background: rgba(88,166,255,0.1); color: var(--accent); }
+        .blog-highlight-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text);
+            line-height: 1.4;
+        }
+        .blog-highlight-card:hover h3 { color: var(--accent); }
+        .blog-hl-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        .blog-hl-meta {
+            font-size: 0.82rem;
+            color: var(--text-tertiary);
+        }
+
         @media (max-width: 768px) {
             .pipeline-arrow { display: none; }
             .pipeline-stage { max-width: none; }
             .hero { padding: 50px 16px 40px; }
             .section { padding: 40px 0; }
+            .blog-highlight-card { padding: 20px; }
         }
     </style>
 </head>
@@ -332,8 +384,31 @@
     </div>
 </header>
 
-<!-- Pipeline -->
+<!-- Blog Highlight -->
 <section class="section">
+    <div class="container">
+        <h2 class="section-title">博客</h2>
+        <p class="section-subtitle">关于AI工程与技术人才的深度思考</p>
+        <div class="blog-highlight">
+            <a href="blog/articles/ai-coding-era-talent.html" class="blog-highlight-card">
+                <div class="blog-hl-category cat-insight">行业洞察</div>
+                <h3>AI Coding时代更需要什么样的人才？</h3>
+                <p class="blog-hl-excerpt">当AI能写出95%语法正确的代码时，会写代码已经不是稀缺能力。知道该写什么、该信任什么、该放弃什么，才是。判断力、架构力、定义力——三种正在急剧升值的能力。</p>
+                <div class="blog-hl-meta">
+                    <span>2026-06-12</span>
+                    <span>·</span>
+                    <span>约 7,500 字</span>
+                </div>
+            </a>
+        </div>
+        <p style="text-align:center;margin-top:20px;">
+            <a href="blog/index.html" style="font-weight:600;">查看所有博客文章 →</a>
+        </p>
+    </div>
+</section>
+
+<!-- Pipeline -->
+<section class="section section-alt">
     <div class="container">
         <h2 class="section-title">战术体系</h2>
         <p class="section-subtitle">四阶段闭环：从看懂市场到拿到 Offer</p>
