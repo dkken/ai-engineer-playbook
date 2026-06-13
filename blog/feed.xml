@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AI Engineer Playbook 博客</title>
+    <link>https://dkken.github.io/ai-engineer-playbook/blog/</link>
+    <description>关于AI工程、技术人才、软件工程趋势的深度思考与行业分析</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 13 Jun 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dkken.github.io/ai-engineer-playbook/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>为什么现在很多CTO都开始去一线做MTS？</title>
+      <link>https://dkken.github.io/ai-engineer-playbook/blog/articles/2026-06-13/cto-to-mts.html</link>
+      <guid isPermaLink="true">https://dkken.github.io/ai-engineer-playbook/blog/articles/2026-06-13/cto-to-mts.html</guid>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0800</pubDate>
+      <category>行业洞察</category>
+      <category>职业发展</category>
+      <description>硅谷六位CTO集体跳槽Anthropic做一线工程师，背后是AI时代技术权力来源的根本转变。从管多少人，到离模型多近。三种驱动变化的底层逻辑深度解析。</description>
+    </item>
+
+    <item>
+      <title>AI Coding时代更需要什么样的人才？</title>
+      <link>https://dkken.github.io/ai-engineer-playbook/blog/articles/2026-06-12/ai-coding-era-talent.html</link>
+      <guid isPermaLink="true">https://dkken.github.io/ai-engineer-playbook/blog/articles/2026-06-12/ai-coding-era-talent.html</guid>
+      <pubDate>Fri, 12 Jun 2026 00:00:00 +0800</pubDate>
+      <category>行业洞察</category>
+      <category>职业发展</category>
+      <description>当AI能写出95%语法正确的代码时，会写代码已经不是稀缺能力。知道该写什么、该信任什么、该放弃什么，才是。判断力、架构力、定义力——三种正在急剧升值的能力。</description>
+    </item>
+
+  </channel>
+</rss>
